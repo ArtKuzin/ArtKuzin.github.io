@@ -1,0 +1,5 @@
+defaults:
+  - scope:
+      path: "ArtKuzinCV-En.pdf"
+    values:
+      permalink: /en
