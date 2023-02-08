@@ -1,5 +1,4 @@
 ---
 layout: page
-title: "arteq"
+title: "Index Page"
 ---
-# ArtKuzin.github.io
