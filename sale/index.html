@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Garage Sale</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest" />
+    <style>
+      .carousel {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+      }
+      .carousel::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel img {
+        height: 300px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        border-radius: 0.5rem;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .carousel img:hover {
+        transform: scale(1.03);
+      }
+      .item {
+        margin-bottom: 3rem;
+      }
+      .price {
+        font-weight: bold;
+        color: #0070f3;
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+      }
+      .separator {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        margin: 2rem 0;
+      }
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        display: none;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 0.5rem;
+      }
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 3rem;
+        user-select: none;
+        cursor: pointer;
+        padding: 0 1rem;
+      }
+      #prev {
+        left: 1rem;
+      }
+      #next {
+        right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Garage Sale</h1>
+        <p>Привет! Я скоро уезжаю из Тбилиси и распродаю все самое крупногабаритное. Здесь можно посмотреть актуальные предложения.</p>
+		<p>Все вещи (кроме колонок) были куплены новые в магазинах менее года назад, остались оригинальные чеки, документы, упаковка. Если здесь все еще висит объявление, значит я это еще не продал. Фотки кликабельны.</p>
+        <p>По любым вопросам можно написать мне в телеграм: <a href="https://t.me/artkuz1n">@artkuz1n</a></p>
+      </header>
+
+      <div class="separator"></div>
+
+      <section>
+        <div class="item">
+          <div class="carousel" data-item="0">
+            <img src="items/item1a.jpg" alt="Item 1 photo 1" />
+            <img src="items/item1b.jpg" alt="Item 1 photo 2" />
+            <img src="items/item1c.jpg" alt="Item 1 photo 3" />
+          </div>
+          <h3>Стол рабочий/офисный 140х70см</h3>
+          <p>Куплен в домино, металлическое основание, столешница под светлое дерево. Без каких-либо дефектов. Очень удобен для установки кронштейнов и фиксации проводов под столешницей тк рама снизу прилегает не строго по контуру и не вплотную. Могу доставить по Тбилиси вплоть до квартиры, но с вашей доплатой за доставку.</p>
+          <div class="price">150 GEL</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="1">
+            <img src="items/item1a.jpg" alt="Item 2 photo 1" />
+			<img src="items/item2a.jpg" alt="Item 2 photo 2" />
+          </div>
+          <h3>Кресло офисное</h3>
+          <p>Куплено в саба, очень удобное по эргономике, особенно если долго сидеть за компом. Хорошая поддержка, дышит благодаря сетчатому материалу. Лучшее из бюджетных, что я видел. Обращаю внимание, что подлокотники, подголовник - фиксированные, нерегулируемые. Поддержка поясницы, сиденье и газлифт регулируются. Спустя некоторое время начало скрипеть, если на нем елозить. К сожалению, полностью это устранить не получилось.</p>
+          <div class="price">150 GEL</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="2">
+            <img src="items/item3a.jpg" alt="Item 3 photo 1" />
+            <img src="items/item3b.jpg" alt="Item 3 photo 2" />
+			<img src="items/item3c.jpg" alt="Item 3 photo 3" />
+          </div>
+          <h3>Микроволновка Toshiba MW3-EM20PE(BK)</h3>
+          <p>Куплена в альте, мощность 800W, объем 20л, работает идеально. Есть таймер, разморозка, много умных режимов и всяких фич, не пользовался ими. Вместительная, удобная в использовании, выглядит довольно приятно. Без каких-либо дефектов. На гарантии еще почти 2 с половиной года.</p>
+          <div class="price">150 GEL</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="3">
+            <img src="items/item4a.jpg" alt="Item 4 photo 1" />
+            <img src="items/item4b.jpg" alt="Item 4 photo 2" />
+			<img src="items/item4c.jpg" alt="Item 4 photo 3" />
+            <img src="items/item4d.jpg" alt="Item 4 photo 4" />
+			<img src="items/item4e.jpg" alt="Item 4 photo 5" />
+          </div>
+          <h3>Монитор Samsung Odyssey G6 LS27DG612SIXCI OLED Silver</h3>
+		  <p>Страница на официальном сайте <a href="https://www.samsung.com/kz_ru/monitors/gaming/odyssey-oled-g6-g61sd-27-inch-240hz-qhd-ls27dg612sixci/?srsltid=AfmBOopGVPZWbD2pka1AWVGqJOY91tlE5Yyl8OK3g9y_ruxITKYO2VCh">Samsung</a> на русском.</p>
+          <p>Куплен в Veli в начале апреля, по работе. Совсем новый, без каких-либо дефектов вообще, был тщательно проверен. Состояние максимально близкое к новому, готов продавать его долго, больших скидок можно не ждать.</p>
+		  <p>OLED панель (3rd gen), что большая редкость в Тбилиси. Дисплей плоский, поверхность матовая, без бликов и отражений. Отличная цветопередача, настоящие глубокие черные цвета. Диагональ 27", разрешение QHD (2,560 x 1,440), частота обновления до 240Hz, время отклика 0.03мс. Идеально подходит как для гейминга, так и для просмотра фильмов и видео. Соотношение сторон обычное 16:9, версия HDMI 2.1, версия DisplayPort 1.4, HDR10+. Неожиданно очень удобный родной стенд - занимает не много места, регулируется по высоте, углу наклона, можно даже поставить экран вертикально. Вся родная комплектация и документация присутствует.</p>
+          <div class="price">1900 GEL !!! ОСВОБОДИТСЯ НЕ РАНЬШЕ 5 МАЯ !!!</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="4">
+            <img src="items/item5a.jpg" alt="Item 5 photo 1" />
+            <img src="items/item5b.jpg" alt="Item 5 photo 2" />
+			<img src="items/item5c.jpg" alt="Item 5 photo 3" />
+            <img src="items/item5d.jpg" alt="Item 5 photo 4" />
+          </div>
+          <h3>Колонки + сабвуфер Harman/Kardon SoundSticks III</h3>
+		  <p>Страница на официальном сайте <a href="https://www.harmanaudio.com/computer-speakers/SOUNDSTICKS+III.html">Harman/Kardon</a> на английском.</p>
+          <p>Куплены много лет назад. Необычный футуристичный дизайн. Отличный звук, можно включать очень громко, качество от этого не проседает. Проводные. Долбит нормально как говорится, нареканий именно по звучанию нет. Технические характеристики по ссылке выше. Все работает, без технических дефектов. Состояние визуально разное - сателлиты выглядят как новые, но сабик выглядит довольно уставшим после многократных переездов. Перед передачей отмою снаружи, внутри трогать не буду, разбирается и собирается не очень удобно. Система очень хорошая и я бы с удовольствием дальше жил с ней, но устал каждый раз перевозить с собой.</p>
+          <div class="price">150 GEL</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="5">
+            <img src="items/item6a.jpg" alt="Item 6 photo 1" />
+            <img src="items/item6b.jpg" alt="Item 6 photo 2" />
+            <img src="items/item6c.jpg" alt="Item 6 photo 3" />
+            <img src="items/item6d.jpg" alt="Item 6 photo 4" />
+            <img src="items/item6e.jpg" alt="Item 6 photo 5" />
+            <img src="items/item6f.jpg" alt="Item 6 photo 6" />
+            <img src="items/item6g.jpg" alt="Item 6 photo 7" />
+            <img src="items/item6h.jpg" alt="Item 6 photo 8" />
+          </div>
+          <h3>Чайник Sencor SWK 1795SS</h3>
+          <p>Куплен в альте, объем 1.7л, корпус пластик (финиш под серебристый метал), емкость стекло. Можно регулировать температуру нагрева - до 100, 90, 80, 70 или 50 градусов. Есть функция поддержания заданной температуры. С подсветкой по температуре. Можно заливать воду не снимая крышку, там хитрый клапан. С защитой от перегрева. Не очень шумный. Тоже без каких-либо дефектов. Кипятился только фильтрованной водой, регулярно чистился изнутри. Снаружи почищу перед передачей, там только следы от воды. На гарантии еще почти полтора года.</p>
+          <div class="price">60 GEL</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="6">
+            <img src="items/item7a.jpg" alt="Item 7 photo 1" />
+          </div>
+          <h3>Швабра + ведро</h3>
+          <p>Куплены всего полгода назад в хозтоварах, никаких дефектов. Удобная швабра, объемное ведро. Плюсом крутящийся механизм отжимания, очень удобно использовать. Швабра складывается и раскладывается.</p>
+          <div class="price">20 GEL</div>
+        </div>
+
+        <div class="item">
+          <div class="carousel" data-item="7">
+            <img src="items/item8a.jpg" alt="Item 8 photo 1" />
+            <img src="items/item8b.jpg" alt="Item 8 photo 2" />
+			<img src="items/item8c.jpg" alt="Item 8 photo 3" />
+          </div>
+          <h3>Мыльница</h3>
+          <p>Куплена в домино, обычная ноунейм подставка под твердое мыло. Выглядит стильно, сделана из цельного камня. Тяжелая, с противоскользящими накладками снизу.</p>
+          <div class="price">10 GEL</div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Lightbox Viewer -->
+    <div class="lightbox" id="lightbox">
+      <span class="lightbox-nav" id="prev">&#10094;</span>
+      <img id="lightbox-img" src="" alt="" />
+      <span class="lightbox-nav" id="next">&#10095;</span>
+    </div>
+
+    <script>
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const prevBtn = document.getElementById("prev");
+      const nextBtn = document.getElementById("next");
+
+      let currentImages = [];
+      let currentIndex = 0;
+
+      document.querySelectorAll(".carousel").forEach((carousel) => {
+        const imgs = Array.from(carousel.querySelectorAll("img"));
+        imgs.forEach((img, index) => {
+          img.addEventListener("click", () => {
+            currentImages = imgs;
+            currentIndex = index;
+            showLightbox();
+          });
+        });
+      });
+
+      function showLightbox() {
+        lightboxImg.src = currentImages[currentIndex].src;
+        lightbox.classList.add("active");
+      }
+
+      function changeImage(direction) {
+        currentIndex = (currentIndex + direction + currentImages.length) % currentImages.length;
+        showLightbox();
+      }
+
+      nextBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        changeImage(1);
+      });
+
+      prevBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        changeImage(-1);
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox || e.target === lightboxImg) {
+          lightbox.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("active")) return;
+        if (e.key === "ArrowRight") changeImage(1);
+        if (e.key === "ArrowLeft") changeImage(-1);
+        if (e.key === "Escape") lightbox.classList.remove("active");
+      });
+	  
+	  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("a");
+    links.forEach(link => {
+      if (!link.hasAttribute("target")) {
+        link.setAttribute("target", "_blank");
+      }
+    });
+  });
+    </script>
+  </body>
+</html>
